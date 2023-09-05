@@ -8,8 +8,6 @@
 namespace BlockDestroyer {
     class Game {
     public:
-        Uint64 lastFrameTime;
-
         Game();
         void Run();
         ~Game();
@@ -17,20 +15,11 @@ namespace BlockDestroyer {
     private:
         SDL_Window* window;
         SDL_Renderer* renderer;
-        SDL_Texture* texture;
-        SDL_Surface* imageSurface;
         
-        Block block;
-        Ball ball;
-        Paddle paddle;
-
         bool quit;
 
         bool intersects(const SDL_Rect& rectA, const SDL_Rect& rectB);
         bool initialize();
-        void handleEvents();
-        void update();
-        void render();
         void cleanUp();
     };
 }

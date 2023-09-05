@@ -2,51 +2,43 @@
 #include "Ball.h"
 
 namespace BlockDestroyer {
-    Ball::Ball(int x, int y, float speedX, float speedY, int size, SDL_Color color, Paddle& paddle)
-        : x(x), y(y), speedX(speedX), speedY(speedY), size(size), color(color), paddle(paddle) {}
+    Ball::Ball(SDL_Rect initialRect) : renderer(nullptr), rect(initialRect), velocity({ 0.3113f, 0.3332f }) {}
 
+    void Ball::setRenderer(SDL_Renderer* newRenderer) {
+        renderer = newRenderer;
+    }
 
-    void Ball::draw(SDL_Renderer* renderer) {
-        // Render the ball
-        SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
-        SDL_Rect rect = { x, y, size, size };
+    void Ball::draw() {
+        SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
         SDL_RenderFillRect(renderer, &rect);
     }
 
     SDL_Rect Ball::getBoundingBox() const {
-        SDL_Rect boundingBox = {x, y, size, size};
-        return boundingBox;
+        return rect;
     }
 
     void Ball::move(Uint64 deltaTime) {
-
-        int xPos = paddle.x;
-
-        if (x > 800 - size)
-        {
-            speedX *= -1;
-            x = 800 - size;
+        if (rect.x > 800 - rect.w) {
+            velocity.x *= -1;
+            rect.x = 800 - rect.w;
         }
 
-        if (x < 0)
-        {
-            speedX *= -1;
-            x = 0;
+        if (rect.x < 0) {
+            velocity.x *= -1;
+            rect.x = 0;
         }
 
-        if (y > 600 - size)
-        {
-            speedY *= -1;
-            y = 600 - size;
+        if (rect.y > 600 - rect.w) {
+            velocity.y *= -1;
+            rect.y = 600 - rect.w;
         }
 
-        if (y < 0)
-        {
-            speedY *= -1;
-            y = 0;
+        if (rect.y < 0) {
+            velocity.y *= -1;
+            rect.y = 0;
         }
 
-        x += static_cast<int>(speedX * deltaTime);
-        y += static_cast<int>(speedY * deltaTime);
+        rect.x += static_cast<int>(velocity.x * deltaTime);
+        rect.y += static_cast<int>(velocity.y * deltaTime);
     }
 }
