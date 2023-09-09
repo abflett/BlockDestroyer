@@ -9,9 +9,10 @@ namespace BlockDestroyer {
     class Game {
     public:
         Game();
-        void Run();
         ~Game();
-
+        void run();
+        void quitGame();
+        SDL_Renderer* getRenderer() const;
     private:
         SDL_Window* window;
         SDL_Renderer* renderer;

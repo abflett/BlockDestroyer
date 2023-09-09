@@ -14,12 +14,20 @@ namespace BlockDestroyer {
 		renderer(nullptr),
 		quit(false) {}
 
-	void Game::Run() {
+	void Game::quitGame() {
+		quit = true;
+	}
+
+	SDL_Renderer* Game::getRenderer() const {
+		return renderer;
+	}
+
+	void Game::run() {
 		if (!initialize()) {
 			return;
 		}
 
-		GameStateManager gameStateManager(renderer);
+		GameStateManager gameStateManager(*this);
 		gameStateManager.changeState(GameStateManager::State::Gameplay);
 
 		while (!quit) {

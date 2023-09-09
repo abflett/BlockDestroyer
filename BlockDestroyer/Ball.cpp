@@ -2,15 +2,20 @@
 #include "Ball.h"
 
 namespace BlockDestroyer {
-    Ball::Ball(SDL_Rect initialRect) : renderer(nullptr), rect(initialRect), velocity({ 0.3113f, 0.3332f }) {}
+    Ball::Ball(SDL_Renderer* newRenderer, SDL_Rect initialRect) : 
+        renderer(newRenderer),
+        texture(nullptr),
+        rect(initialRect),
+        velocity({ 0.3113f, 0.3332f }) {
 
-    void Ball::setRenderer(SDL_Renderer* newRenderer) {
-        renderer = newRenderer;
+        texture = IMG_LoadTexture(renderer, "ball.png");
+        if (!texture) {
+            SDL_Log("Texture could not load: %s", SDL_GetError());
+        }
     }
 
     void Ball::draw() {
-        SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-        SDL_RenderFillRect(renderer, &rect);
+        SDL_RenderCopy(renderer, texture, NULL, &rect);
     }
 
     SDL_Rect Ball::getBoundingBox() const {
@@ -40,5 +45,11 @@ namespace BlockDestroyer {
 
         rect.x += static_cast<int>(velocity.x * deltaTime);
         rect.y += static_cast<int>(velocity.y * deltaTime);
+    }
+
+    Ball::~Ball() {
+        if (texture) {
+            SDL_DestroyTexture(texture);
+        }
     }
 }

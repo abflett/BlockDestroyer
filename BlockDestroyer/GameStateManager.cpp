@@ -3,21 +3,22 @@
 #include "GameOverState.h"
 #include "MainMenuState.h"
 
+
 namespace BlockDestroyer {
-    GameStateManager::GameStateManager(SDL_Renderer* renderer) : currentState(State::Gameplay), renderer(renderer) {}
+    GameStateManager::GameStateManager(Game& game) : currentState(State::Gameplay), game(game) {}
 
     void GameStateManager::changeState(State newState) {
         currentState = newState;
 
         switch (currentState) {
         case State::MainMenu:
-            currentStatePtr = std::make_unique<MainMenuState>(renderer);
+            currentStatePtr = std::make_unique<MainMenuState>(game);
             break;
         case State::Gameplay:
-            currentStatePtr = std::make_unique<GameplayState>(renderer);
+            currentStatePtr = std::make_unique<GameplayState>(game);
             break;
         case State::GameOver:
-            currentStatePtr = std::make_unique<GameOverState>(renderer);
+            currentStatePtr = std::make_unique<GameOverState>(game);
             break;
         }
     }

@@ -1,16 +1,17 @@
 #pragma once
 #include "GameState.h"
+#include "Game.h"
 #include <SDL.h>
 
 namespace BlockDestroyer {
     class MainMenuState : public GameState {
     public:
-        MainMenuState(SDL_Renderer* renderer);
+        MainMenuState(Game& game);
         void handleEvents() override;
         void update() override;
         void render() override;
 
     private:
-        SDL_Renderer* renderer;
+        Game& game;
     };
 }

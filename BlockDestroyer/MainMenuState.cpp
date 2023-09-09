@@ -1,7 +1,7 @@
 #include "MainMenuState.h"
 
 namespace BlockDestroyer {
-    MainMenuState::MainMenuState(SDL_Renderer* renderer) : renderer(renderer) {
+    MainMenuState::MainMenuState(Game& game) : game(game) {
         SDL_Log("MainMenuState(SDL_Renderer* renderer)");
     }
 

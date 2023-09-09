@@ -4,11 +4,12 @@
 #include "Paddle.h"
 #include "Block.h"
 #include "Ball.h"
+#include "Game.h"
 
 namespace BlockDestroyer {
     class GameplayState : public GameState {
     public:
-        GameplayState(SDL_Renderer* existingRenderer);
+        GameplayState(Game& game);
         void handleEvents() override;
         void update() override;
         void render() override;
@@ -20,5 +21,6 @@ namespace BlockDestroyer {
         Block block;
         Ball ball;
         Paddle paddle;
+        Game& game;
     };
 }

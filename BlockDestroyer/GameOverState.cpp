@@ -2,7 +2,7 @@
 
 namespace BlockDestroyer {
 
-    GameOverState::GameOverState(SDL_Renderer* renderer) : renderer(renderer) {
+    GameOverState::GameOverState(Game& game) : game(game) {
         SDL_Log("GameOverState(SDL_Renderer* renderer");
     }
 

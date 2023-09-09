@@ -1,21 +1,22 @@
 #include "GameplayState.h"
 
 namespace BlockDestroyer {
-	GameplayState::GameplayState(SDL_Renderer* existingRenderer) :
-		renderer(existingRenderer),
+	GameplayState::GameplayState(Game& game) :
+		renderer(game.getRenderer()),
+		game(game),
 		quit(false),
 		block({ 20, 20, 50, 30 }, { 255, 0, 0, 255 }),
 		paddle(300),
-		ball({ 400, 300, 16, 16 }),
+		ball(renderer, { 400, 300, 16, 16 }),
 		lastFrameTime(SDL_GetTicks64()) {
-		SDL_Log("GameplayState(SDL_Renderer* renderer)");
+		SDL_Log("GameplayState");
 	}
 
 	void GameplayState::handleEvents() {
 		SDL_Event event;
 		while (SDL_PollEvent(&event) != 0) {
 			if (event.type == SDL_QUIT) {
-				quit = true;
+				game.quitGame();
 			}
 			else if (event.type == SDL_KEYDOWN) {
 				if (event.key.keysym.scancode == SDL_SCANCODE_LEFT) {
@@ -26,6 +27,7 @@ namespace BlockDestroyer {
 				if (event.key.keysym.scancode == SDL_SCANCODE_RIGHT) {
 					// Right arrow key is pressed, handle it here
 					paddle.rightPressed(true);
+					
 				}
 			}
 
@@ -53,6 +55,8 @@ namespace BlockDestroyer {
 	}
 
 	void GameplayState::render() {
+
+		
 		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255); // Set the background color (black)
 		SDL_RenderClear(renderer);
 
