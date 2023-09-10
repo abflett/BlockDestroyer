@@ -4,6 +4,8 @@
 #include "Block.h"
 #include "Ball.h"
 #include "Paddle.h"
+#include "Definitions.h"
+#include <stdexcept>
 
 namespace BlockDestroyer {
     class Game {
@@ -20,7 +22,6 @@ namespace BlockDestroyer {
         bool quit;
 
         bool intersects(const SDL_Rect& rectA, const SDL_Rect& rectB);
-        bool initialize();
         void cleanUp();
     };
 }
