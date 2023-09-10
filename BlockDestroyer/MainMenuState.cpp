@@ -4,8 +4,10 @@
 #include <SDL.h>
 
 namespace BlockDestroyer {
-    MainMenuState::MainMenuState(Game& game) : GameState(), game(game) {
-        SDL_Log("MainMenuState(SDL_Renderer* renderer)");
+    MainMenuState::MainMenuState(Game& game) : GameState(), game(game) { }
+
+    void MainMenuState::initialize() {
+        SDL_Log("MainMenuState initialize()");
     }
 
     void MainMenuState::handleEvents() {

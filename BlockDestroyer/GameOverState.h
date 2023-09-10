@@ -11,6 +11,7 @@ namespace BlockDestroyer {
         void handleEvents() override;
         void update(Uint32 deltaTime) override;
         void render() override;
+        void initialize() override;
 
     private:
         Game& game;

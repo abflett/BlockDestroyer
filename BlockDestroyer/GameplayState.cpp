@@ -15,7 +15,10 @@ namespace BlockDestroyer {
 		block({ 20, 20, 50, 30 }, { 255, 0, 0, 255 }),
 		paddle(300),
 		ball(renderer, { 400, 300, 16, 16 }) {
-		SDL_Log("GameplayState");
+	}
+
+	void GameplayState::initialize() {
+		SDL_Log("GameplayState initialize()");
 	}
 
 	void GameplayState::handleEvents() {

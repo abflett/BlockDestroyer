@@ -5,5 +5,5 @@ namespace BlockDestroyer {
     const int HEIGHT = 720;
 
     const int FPS = 60;
-    const int frameDelay = 1000 / FPS;
+    const int targetFrameTime = 1000 / FPS;
 }

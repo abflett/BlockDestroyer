@@ -47,25 +47,16 @@ namespace BlockDestroyer {
 		GameStateManager gameStateManager(*this);
 		gameStateManager.changeState(GameStateManager::State::Gameplay);
 
-		// Timing variables
-		const int targetFPS = 60;
-		const Uint32 targetFrameTime = 1000 / targetFPS;
 		Uint32 lastFrameTime = 0;
 
 		while (!quit) {
 			Uint32 currentTime = SDL_GetTicks();
-
-			// Calculate the time elapsed since the last frame
 			Uint32 deltaTime = currentTime - lastFrameTime;
-
-			// Update the last frame time
 			lastFrameTime = currentTime;
 
-			// Handle events and update
+
 			gameStateManager.handleEvents();
 			gameStateManager.update(deltaTime);
-
-			// Render the game
 			gameStateManager.render();
 
 			// Cap the frame rate by delaying if necessary

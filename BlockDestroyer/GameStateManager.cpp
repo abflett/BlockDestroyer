@@ -16,12 +16,15 @@ namespace BlockDestroyer {
         switch (currentState) {
         case State::MainMenu:
             currentStatePtr = std::make_unique<MainMenuState>(game);
+            currentStatePtr->initialize();
             break;
         case State::Gameplay:
             currentStatePtr = std::make_unique<GameplayState>(game);
+            currentStatePtr->initialize();
             break;
         case State::GameOver:
             currentStatePtr = std::make_unique<GameOverState>(game);
+            currentStatePtr->initialize();
             break;
         }
     }
