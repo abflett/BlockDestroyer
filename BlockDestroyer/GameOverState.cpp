@@ -35,6 +35,9 @@ namespace BlockDestroyer {
     }
 
     void GameOverState::render() {
-        // Render the game over state
+		SDL_SetRenderDrawColor(renderer, 122, 0, 0, 255); // Set the background color (black)
+		SDL_RenderClear(renderer);
+
+		SDL_RenderPresent(renderer);
     }
 }

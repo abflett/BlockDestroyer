@@ -34,6 +34,9 @@ namespace BlockDestroyer {
     }
 
     void MainMenuState::render() {
-        // Render the main menu
+        SDL_SetRenderDrawColor(renderer, 0, 122, 0, 255); // Set the background color (black)
+        SDL_RenderClear(renderer);
+
+        SDL_RenderPresent(renderer);
     }
 }

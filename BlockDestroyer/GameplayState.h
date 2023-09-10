@@ -21,6 +21,7 @@ namespace BlockDestroyer {
         SDL_Renderer* renderer;
         GameStateManager& gameStateManager;
         Game& game;
+        SDL_Texture* gameplayTexture;
         Block block;
         Ball ball;
         Paddle paddle;

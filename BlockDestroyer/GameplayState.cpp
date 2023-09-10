@@ -69,8 +69,6 @@ namespace BlockDestroyer {
 	}
 
 	void GameplayState::render() {
-		int rate = 165 / 1000;
-		
 		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255); // Set the background color (black)
 		SDL_RenderClear(renderer);
 
