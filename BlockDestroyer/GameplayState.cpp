@@ -4,14 +4,15 @@
 #include "Block.h"
 #include "Ball.h"
 #include "Game.h"
+#include "GameStateManager.h"
 
 #include <SDL.h>
 
 namespace BlockDestroyer {
-	GameplayState::GameplayState(Game& game) :
+	GameplayState::GameplayState(Game& game, GameStateManager& setGameStateManager) :
 		renderer(game.getRenderer()),
 		game(game),
-		quit(false),
+		gameStateManager(setGameStateManager),
 		block({ 20, 20, 50, 30 }, { 255, 0, 0, 255 }),
 		paddle(300),
 		ball(renderer, { 400, 300, 16, 16 }) {
@@ -28,6 +29,8 @@ namespace BlockDestroyer {
 				game.quitGame();
 			}
 			else if (event.type == SDL_KEYDOWN) {
+
+
 				if (event.key.keysym.scancode == SDL_SCANCODE_LEFT) {
 					// Left arrow key is pressed, handle it here
 					paddle.leftPressed(true);
@@ -37,6 +40,12 @@ namespace BlockDestroyer {
 					// Right arrow key is pressed, handle it here
 					paddle.rightPressed(true);
 					
+				}
+
+				if (event.key.keysym.scancode == SDL_SCANCODE_BACKSPACE) {
+					// Right arrow key is pressed, handle it here
+					gameStateManager.changeState(GameStateManager::State::GameOver);
+
 				}
 			}
 

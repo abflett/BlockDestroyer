@@ -5,14 +5,29 @@
 
 namespace BlockDestroyer {
 
-    GameOverState::GameOverState(Game& game) : game(game) { }
+    GameOverState::GameOverState(Game& game, GameStateManager& setGameStateManager) :
+        renderer(game.getRenderer()),
+        game(game),
+        gameStateManager(setGameStateManager) { }
 
     void GameOverState::initialize() {
         SDL_Log("GameOverState initialize()");
     }
 
     void GameOverState::handleEvents() {
-        // Handle events for the game over state
+		SDL_Event event;
+		while (SDL_PollEvent(&event) != 0) {
+			if (event.type == SDL_QUIT) {
+				game.quitGame();
+			}
+			else if (event.type == SDL_KEYDOWN) {
+				if (event.key.keysym.scancode == SDL_SCANCODE_BACKSPACE) {
+					// Right arrow key is pressed, handle it here
+					gameStateManager.changeState(GameStateManager::State::MainMenu);
+
+				}
+			}
+		}
     }
 
     void GameOverState::update(Uint32 deltaTime) {

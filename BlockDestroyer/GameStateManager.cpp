@@ -8,22 +8,24 @@
 #include <memory>
 
 namespace BlockDestroyer {
-    GameStateManager::GameStateManager(Game& game) : currentState(State::Gameplay), game(game) {}
+    GameStateManager::GameStateManager(Game& game) : currentState(State::Gameplay), game(game) {
+        changeState(currentState);
+    }
 
     void GameStateManager::changeState(State newState) {
         currentState = newState;
 
         switch (currentState) {
         case State::MainMenu:
-            currentStatePtr = std::make_unique<MainMenuState>(game);
+            currentStatePtr = std::make_unique<MainMenuState>(game, *this);
             currentStatePtr->initialize();
             break;
         case State::Gameplay:
-            currentStatePtr = std::make_unique<GameplayState>(game);
+            currentStatePtr = std::make_unique<GameplayState>(game, *this);
             currentStatePtr->initialize();
             break;
         case State::GameOver:
-            currentStatePtr = std::make_unique<GameOverState>(game);
+            currentStatePtr = std::make_unique<GameOverState>(game, *this);
             currentStatePtr->initialize();
             break;
         }

@@ -45,7 +45,6 @@ namespace BlockDestroyer {
 
 	void Game::start() {
 		GameStateManager gameStateManager(*this);
-		gameStateManager.changeState(GameStateManager::State::Gameplay);
 
 		Uint32 lastFrameTime = 0;
 
