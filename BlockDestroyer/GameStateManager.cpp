@@ -30,8 +30,8 @@ namespace BlockDestroyer {
         currentStatePtr->handleEvents();
     }
 
-    void GameStateManager::update() {
-        currentStatePtr->update();
+    void GameStateManager::update(Uint32 deltaTime) {
+        currentStatePtr->update(deltaTime);
     }
 
     void GameStateManager::render() {

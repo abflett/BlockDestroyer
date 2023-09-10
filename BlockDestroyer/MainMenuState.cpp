@@ -12,7 +12,7 @@ namespace BlockDestroyer {
         // Handle events for the main menu
     }
 
-    void MainMenuState::update() {
+    void MainMenuState::update(Uint32 deltaTime) {
         // Update the main menu state
     }
 

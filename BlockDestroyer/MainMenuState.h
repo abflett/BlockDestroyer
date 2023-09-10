@@ -9,7 +9,7 @@ namespace BlockDestroyer {
     public:
         MainMenuState(Game& game);
         void handleEvents() override;
-        void update() override;
+        void update(Uint32 deltaTime) override;
         void render() override;
 
     private:

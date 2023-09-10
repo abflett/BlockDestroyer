@@ -12,7 +12,7 @@ namespace BlockDestroyer {
         GameStateManager(Game& game);
         void changeState(State newState);
         void handleEvents();
-        void update();
+        void update(Uint32 deltaTime);
         void render();
 
     private:

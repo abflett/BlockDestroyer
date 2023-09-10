@@ -14,8 +14,7 @@ namespace BlockDestroyer {
 		quit(false),
 		block({ 20, 20, 50, 30 }, { 255, 0, 0, 255 }),
 		paddle(300),
-		ball(renderer, { 400, 300, 16, 16 }),
-		lastFrameTime(SDL_GetTicks64()) {
+		ball(renderer, { 400, 300, 16, 16 }) {
 		SDL_Log("GameplayState");
 	}
 
@@ -52,17 +51,13 @@ namespace BlockDestroyer {
 		}
 	}
 
-	void GameplayState::update() {
-		Uint64 currentTime = SDL_GetTicks64();
-		Uint64 deltaTime = currentTime - lastFrameTime;
-		lastFrameTime = currentTime;
-
+	void GameplayState::update(Uint32 deltaTime) {
 		ball.move(deltaTime);
 		paddle.update(deltaTime);
 	}
 
 	void GameplayState::render() {
-
+		int rate = 165 / 1000;
 		
 		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255); // Set the background color (black)
 		SDL_RenderClear(renderer);
@@ -72,6 +67,5 @@ namespace BlockDestroyer {
 		paddle.draw(renderer);
 
 		SDL_RenderPresent(renderer);
-		SDL_Delay(16);
 	}
 }

@@ -12,13 +12,12 @@ namespace BlockDestroyer {
     public:
         GameplayState(Game& game);
         void handleEvents() override;
-        void update() override;
+        void update(Uint32 deltaTime) override;
         void render() override;
 
     private:
         SDL_Renderer* renderer;
         bool quit;
-        Uint64 lastFrameTime;
         Block block;
         Ball ball;
         Paddle paddle;

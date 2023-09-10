@@ -13,7 +13,7 @@ namespace BlockDestroyer {
         // Handle events for the game over state
     }
 
-    void GameOverState::update() {
+    void GameOverState::update(Uint32 deltaTime) {
         // Update the game over state
     }
 
