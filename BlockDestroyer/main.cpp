@@ -2,6 +2,6 @@
 
 int main(int argc, char* argv[]) {
     BlockDestroyer::Game game;
-    game.run();
+    game.start();
     return 0;
 }

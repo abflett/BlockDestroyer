@@ -1,5 +1,7 @@
 #include "CollisionUtils.h"
 
+#include <SDL_rect.h>
+
 namespace BlockDestroyer {
 	bool CollisionUtils::Intersects(const SDL_Rect& rectA, const SDL_Rect& rectB) {
         bool horizontalOverlap = (rectA.x < rectB.x + rectB.w) && (rectB.x < rectA.x + rectA.w);

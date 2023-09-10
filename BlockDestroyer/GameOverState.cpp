@@ -1,4 +1,7 @@
 #include "GameOverState.h"
+#include "Game.h"
+
+#include <SDL.h>
 
 namespace BlockDestroyer {
 

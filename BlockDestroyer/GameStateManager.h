@@ -1,8 +1,8 @@
 #pragma once
-#include <memory>
 #include "GameState.h"
-#include "Ball.h" // Include any other necessary headers for game objects
 #include "Game.h"
+
+#include <memory>
 
 namespace BlockDestroyer {
     class GameStateManager {

@@ -1,35 +1,36 @@
+#include "Game.h"
+#include "GameStateManager.h"
+#include "Definitions.h"
+
 #include <SDL.h>
 #include <SDL_image.h>
-#include "Game.h"
-#include "Block.h"
-#include "Ball.h"
-#include "GameStateManager.h"
-#include "MainMenuState.h"
-#include "GameplayState.h"
+
+#include <stdexcept>
 
 namespace BlockDestroyer {
 	Game::Game() :
 		quit(false),
+		imgInit(0),
 		window(nullptr),
 		renderer(nullptr) {
 
 		if (SDL_Init(SDL_INIT_VIDEO) < 0) {
-			throw std::runtime_error("SDL initialization failed");
+			throw std::runtime_error("SDL initialization failed: " + std::string(SDL_GetError()));
 		}
 
 		window = SDL_CreateWindow("Block Destroyer", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, WIDTH, HEIGHT, SDL_WINDOW_SHOWN);
 		if (!window) {
-			throw std::runtime_error("Window creation failed");
+			throw std::runtime_error("Window creation failed: " + std::string(SDL_GetError()));
 		}
 
 		renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 		if (!renderer) {
-			throw std::runtime_error("Renderer creation failed");
+			throw std::runtime_error("Renderer creation failed: " + std::string(SDL_GetError()));
 		}
 
-		int imgInit = IMG_Init(IMG_INIT_PNG);
+		imgInit = IMG_Init(IMG_INIT_PNG);
 		if ((imgInit & IMG_INIT_PNG) != IMG_INIT_PNG) {
-			throw std::runtime_error("Image initialization failed");
+			throw std::runtime_error("Image initialization failed" + std::string(SDL_GetError()));
 		}
 	}
 
@@ -41,7 +42,7 @@ namespace BlockDestroyer {
 		return renderer;
 	}
 
-	void Game::run() {
+	void Game::start() {
 		GameStateManager gameStateManager(*this);
 		gameStateManager.changeState(GameStateManager::State::Gameplay);
 
@@ -53,7 +54,7 @@ namespace BlockDestroyer {
 	}
 
 	void Game::cleanUp() {
-		if (IMG_Init(0) < 1) {
+		if (imgInit > 0) {
 			IMG_Quit();
 		}
 

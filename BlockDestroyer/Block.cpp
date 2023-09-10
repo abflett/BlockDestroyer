@@ -1,5 +1,7 @@
 #include "Block.h"
 
+#include <SDL.h>
+
 namespace BlockDestroyer {
     Block::Block(SDL_Rect initialRect, SDL_Color color) : rect(initialRect), color(color) {}
 

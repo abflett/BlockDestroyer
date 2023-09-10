@@ -1,4 +1,5 @@
 #include "Paddle.h"
+#include <SDL.h>
 
 namespace BlockDestroyer {
 	const int Paddle::width = 100;

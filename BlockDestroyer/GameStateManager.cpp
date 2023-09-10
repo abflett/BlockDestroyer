@@ -2,7 +2,10 @@
 #include "GameplayState.h"
 #include "GameOverState.h"
 #include "MainMenuState.h"
+#include "GameState.h"
+#include "Game.h"
 
+#include <memory>
 
 namespace BlockDestroyer {
     GameStateManager::GameStateManager(Game& game) : currentState(State::Gameplay), game(game) {}

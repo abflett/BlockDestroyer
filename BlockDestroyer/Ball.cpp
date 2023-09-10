@@ -1,5 +1,8 @@
-// Ball.cpp
 #include "Ball.h"
+
+#include <SDL.h>
+#include <SDL_image.h>
+#include <glm/glm.hpp>
 
 namespace BlockDestroyer {
     Ball::Ball(SDL_Renderer* newRenderer, SDL_Rect initialRect) : 

@@ -1,5 +1,4 @@
-#ifndef DEFS_H_
-#define DEFS_H_
+#pragma once
 
 namespace BlockDestroyer {
     const int WIDTH = 1280;
@@ -8,5 +7,3 @@ namespace BlockDestroyer {
     const int FPS = 60;
     const int frameDelay = 1000 / FPS;
 }
-
-#endif

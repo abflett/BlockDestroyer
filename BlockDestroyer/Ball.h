@@ -2,7 +2,6 @@
 #include <SDL.h>
 #include <SDL_image.h>
 #include <glm/glm.hpp>
-#include "Paddle.h"
 
 namespace BlockDestroyer {
     class Ball {
