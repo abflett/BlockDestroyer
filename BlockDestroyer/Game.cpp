@@ -9,9 +9,9 @@
 
 namespace BlockDestroyer {
 	Game::Game() :
+		quit(false),
 		window(nullptr),
-		renderer(nullptr),
-		quit(false) {
+		renderer(nullptr) {
 
 		if (SDL_Init(SDL_INIT_VIDEO) < 0) {
 			throw std::runtime_error("SDL initialization failed");
@@ -50,12 +50,6 @@ namespace BlockDestroyer {
 			gameStateManager.update();
 			gameStateManager.render();
 		}
-	}
-
-	bool Game::intersects(const SDL_Rect& rectA, const SDL_Rect& rectB) {
-		bool horizontalOverlap = (rectA.x < rectB.x + rectB.w) && (rectB.x < rectA.x + rectA.w);// Check for horizontal overlap
-		bool verticalOverlap = (rectA.y < rectB.y + rectB.h) && (rectB.y < rectA.y + rectA.h);// Check for vertical overlap
-		return horizontalOverlap && verticalOverlap;
 	}
 
 	void Game::cleanUp() {

@@ -16,12 +16,11 @@ namespace BlockDestroyer {
         void quitGame();
         SDL_Renderer* getRenderer() const;
     private:
+        bool quit;
         SDL_Window* window;
         SDL_Renderer* renderer;
         
-        bool quit;
-
-        bool intersects(const SDL_Rect& rectA, const SDL_Rect& rectB);
+        
         void cleanUp();
     };
 }
