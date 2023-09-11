@@ -13,7 +13,6 @@ namespace BlockDestroyer {
     private:
         int imgInit;
         bool quit;
-        SDL_Renderer* renderer;
         Engine& engine;
     };
 }

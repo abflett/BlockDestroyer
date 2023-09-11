@@ -13,7 +13,6 @@ namespace BlockDestroyer {
 	Game::Game(Engine& getEngine) :
 		quit(false),
 		imgInit(0),
-		renderer(getEngine.getRenderer()),
 		engine(getEngine) {
 	}
 
@@ -22,7 +21,7 @@ namespace BlockDestroyer {
 	}
 
 	SDL_Renderer* Game::getRenderer() const {
-		return renderer;
+		return engine.getRenderer();
 	}
 
 	void Game::start() {
@@ -42,8 +41,8 @@ namespace BlockDestroyer {
 
 			// Cap the frame rate by delaying if necessary
 			Uint32 frameTime = SDL_GetTicks() - currentTime;
-			if (frameTime < targetFrameTime) {
-				SDL_Delay(targetFrameTime - frameTime);
+			if (frameTime < TARGET_FRAME_TIME) {
+				SDL_Delay(TARGET_FRAME_TIME - frameTime);
 			}
 		}
 	}
