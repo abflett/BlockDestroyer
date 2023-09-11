@@ -27,7 +27,7 @@ namespace BlockDestroyer {
             throw std::runtime_error("Window creation failed: " + std::string(SDL_GetError()));
         }
 
-        renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+        renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
         if (!renderer) {
             throw std::runtime_error("Renderer creation failed: " + std::string(SDL_GetError()));
         }

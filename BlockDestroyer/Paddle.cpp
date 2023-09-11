@@ -36,8 +36,16 @@ namespace BlockDestroyer {
 			x += static_cast<int>(-1 * deltaTime);
 		}
 
+		if (x < 0) {
+			x = 0;
+		}
+
 		if (rightIsPressed && x < PLAYFIELD_WIDTH - width) {
 			x += static_cast<int>(1 * deltaTime);
+		}
+
+		if (x > PLAYFIELD_WIDTH - width) {
+			x = PLAYFIELD_WIDTH - width;
 		}
 	}
 }
