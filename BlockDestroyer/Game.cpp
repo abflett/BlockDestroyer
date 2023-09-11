@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "Engine.h"
 #include "GameStateManager.h"
 #include "Definitions.h"
 
@@ -9,42 +10,11 @@
 #include <thread>
 
 namespace BlockDestroyer {
-	Game::Game() :
+	Game::Game(Engine& getEngine) :
 		quit(false),
 		imgInit(0),
-		window(nullptr),
-		renderer(nullptr) {
-
-		if (SDL_Init(SDL_INIT_VIDEO) < 0) {
-			throw std::runtime_error("SDL initialization failed: " + std::string(SDL_GetError()));
-		}
-
-		int desktopWidth = 0;  // Initialize with default values
-		int desktopHeight = 0; // Initialize with default values
-		SDL_DisplayMode desktopDisplayMode;
-
-		if (SDL_GetDesktopDisplayMode(0, &desktopDisplayMode) != 0) {
-			// Handle error (e.g., unable to get desktop resolution)
-		}
-		else {
-			desktopWidth = desktopDisplayMode.w;
-			desktopHeight = desktopDisplayMode.h;
-		}
-
-		window = SDL_CreateWindow("Block Destroyer", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, desktopWidth, desktopHeight, SDL_WINDOW_SHOWN);
-		if (!window) {
-			throw std::runtime_error("Window creation failed: " + std::string(SDL_GetError()));
-		}
-
-		renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
-		if (!renderer) {
-			throw std::runtime_error("Renderer creation failed: " + std::string(SDL_GetError()));
-		}
-
-		imgInit = IMG_Init(IMG_INIT_PNG);
-		if ((imgInit & IMG_INIT_PNG) != IMG_INIT_PNG) {
-			throw std::runtime_error("Image initialization failed" + std::string(SDL_GetError()));
-		}
+		renderer(getEngine.getRenderer()),
+		engine(getEngine) {
 	}
 
 	void Game::quitGame() {
@@ -78,24 +48,7 @@ namespace BlockDestroyer {
 		}
 	}
 
-	void Game::cleanUp() {
-		if (imgInit > 0) {
-			IMG_Quit();
-		}
-
-		if (renderer) {
-			SDL_DestroyRenderer(renderer);
-		}
-
-		if (window) {
-			SDL_DestroyWindow(window);
-		}
-
-		SDL_Quit();
-	}
-
 	Game::~Game() {
-		cleanUp();
 	}
 }
 

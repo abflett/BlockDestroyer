@@ -154,6 +154,7 @@
     <ClCompile Include="Ball.cpp" />
     <ClCompile Include="Block.cpp" />
     <ClCompile Include="CollisionUtils.cpp" />
+    <ClCompile Include="Engine.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameOverState.cpp" />
     <ClCompile Include="GameplayState.cpp" />
@@ -174,6 +175,7 @@
     <ClInclude Include="Block.h" />
     <ClInclude Include="CollisionUtils.h" />
     <ClInclude Include="Definitions.h" />
+    <ClInclude Include="Engine.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameOverState.h" />
     <ClInclude Include="GameplayState.h" />

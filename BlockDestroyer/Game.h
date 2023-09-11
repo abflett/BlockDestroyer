@@ -1,10 +1,11 @@
 #pragma once
+#include "Engine.h"
 #include <SDL.h>
 
 namespace BlockDestroyer {
     class Game {
     public:
-        Game();
+        Game(Engine& getEngine);
         ~Game();
         void start();
         void quitGame();
@@ -12,9 +13,7 @@ namespace BlockDestroyer {
     private:
         int imgInit;
         bool quit;
-        SDL_Window* window;
         SDL_Renderer* renderer;
-        
-        void cleanUp();
+        Engine& engine;
     };
 }
