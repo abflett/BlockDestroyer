@@ -1,5 +1,5 @@
 #pragma once
-
+#include "ResourceManager.h"
 #include <SDL.h>
 #include <SDL_image.h>
 
@@ -12,6 +12,7 @@ namespace BlockDestroyer {
         void cleanUp();
         SDL_Renderer* getRenderer() const;
         SDL_DisplayMode getDesktopDisplayMode() const;
+        ResourceManager& getResourceManager(); // Add a getter for the ResourceManager
 
     private:
         int windowWidth;
@@ -19,6 +20,7 @@ namespace BlockDestroyer {
         SDL_Window* window;
         SDL_Renderer* renderer;
         SDL_DisplayMode desktopDisplayMode;
+        ResourceManager resourceManager;
         int imgInit;
     };
 }

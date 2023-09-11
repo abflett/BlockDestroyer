@@ -6,16 +6,16 @@
 #include <glm/glm.hpp>
 
 namespace BlockDestroyer {
-    Ball::Ball(SDL_Renderer* newRenderer, SDL_Rect initialRect) : 
+    Ball::Ball(SDL_Texture* getTexture, SDL_Renderer* newRenderer) :
         renderer(newRenderer),
-        texture(nullptr),
-        rect(initialRect),
-        velocity({ 0.3113f, 0.3332f }) {
+        texture(getTexture),
+        rect(),
+        velocity({ 0.3113f, -0.3332f }), 
+        position({ PLAYFIELD_WIDTH / 2, PLAYFIELD_HEIGHT / 2 }) {
 
-        texture = IMG_LoadTexture(renderer, "ball.png");
-        if (!texture) {
-            SDL_Log("Texture could not load: %s", SDL_GetError());
-        }
+        rect = { static_cast<int>(position.x), static_cast<int>(position.y), 0, 0 };
+        SDL_QueryTexture(texture, NULL, NULL, &rect.w, &rect.h);
+        
     }
 
     void Ball::draw() {
@@ -27,33 +27,30 @@ namespace BlockDestroyer {
     }
 
     void Ball::move(Uint64 deltaTime) {
-        if (rect.x > PLAYFIELD_WIDTH - rect.w) {
+        if (position.x > PLAYFIELD_WIDTH - rect.w) {
             velocity.x *= -1;
-            rect.x = PLAYFIELD_WIDTH - rect.w;
+            position.x = PLAYFIELD_WIDTH - rect.w;
         }
 
-        if (rect.x < 0) {
+        if (position.x < 0) {
             velocity.x *= -1;
-            rect.x = 0;
+            position.x = 0;
         }
 
-        if (rect.y > PLAYFIELD_HEIGHT - rect.w) {
+        if (position.y > PLAYFIELD_HEIGHT - rect.w) {
             velocity.y *= -1;
-            rect.y = PLAYFIELD_HEIGHT - rect.w;
+            position.y = PLAYFIELD_HEIGHT - rect.w;
         }
 
-        if (rect.y < 0) {
+        if (position.y < 0) {
             velocity.y *= -1;
-            rect.y = 0;
+            position.y = 0;
         }
 
-        rect.x += static_cast<int>(velocity.x * deltaTime);
-        rect.y += static_cast<int>(velocity.y * deltaTime);
-    }
+        position.x += velocity.x * deltaTime;
+        position.y += velocity.y * deltaTime;
 
-    Ball::~Ball() {
-        if (texture) {
-            SDL_DestroyTexture(texture);
-        }
+        rect.x = static_cast<int>(position.x);
+        rect.y = static_cast<int>(position.y);
     }
 }

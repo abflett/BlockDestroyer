@@ -59,6 +59,9 @@
     <Image Include="afc.ico">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="ball.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="BlockDestroyer.rc">

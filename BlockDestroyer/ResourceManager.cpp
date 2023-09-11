@@ -3,16 +3,7 @@
 #include <stdexcept>
 
 namespace BlockDestroyer {
-    ResourceManager::ResourceManager(SDL_Renderer* renderer) : renderer(renderer) {
-        // Load textures during ResourceManager initialization and associate them with names
-        textures["ball"] = loadTexture("ball.png", "ball");
-        // Load other textures here...
-    }
-
-    ResourceManager::~ResourceManager() {
-        // Release resources in the destructor
-        releaseResources();
-    }
+    ResourceManager::ResourceManager(SDL_Renderer* renderer) : renderer(renderer), textures() { }
 
     void ResourceManager::releaseResources() {
         for (auto& pair : textures) {
@@ -41,5 +32,10 @@ namespace BlockDestroyer {
             textures[name] = texture;
         }
         return texture;
+    }
+
+    ResourceManager::~ResourceManager() {
+        // Release resources in the destructor
+        releaseResources();
     }
 }

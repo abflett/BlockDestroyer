@@ -12,14 +12,11 @@ namespace BlockDestroyer {
         ~ResourceManager();
 
         SDL_Texture* getTexture(const std::string& name) const;
+        SDL_Texture* loadTexture(const std::string& filePath, const std::string& name);
 
-        // Function to release resources (textures)
         void releaseResources();
-
     private:
         SDL_Renderer* renderer;
         std::unordered_map<std::string, SDL_Texture*> textures;
-
-        SDL_Texture* loadTexture(const std::string& filePath, const std::string& name);
     };
 }

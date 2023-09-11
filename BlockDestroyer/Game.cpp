@@ -20,11 +20,21 @@ namespace BlockDestroyer {
 		quit = true;
 	}
 
+	SDL_Texture* Game::getTexture(std::string name) const {
+		return engine.getResourceManager().getTexture(name);
+	}
+
+	SDL_Texture* Game::loadTexture(std::string file, std::string name) const {
+		return engine.getResourceManager().loadTexture(file, name);
+	}
+	
 	SDL_Renderer* Game::getRenderer() const {
 		return engine.getRenderer();
 	}
 
 	void Game::start() {
+		loadTexture("ball.png", "ball");
+
 		GameStateManager gameStateManager(*this);
 
 		Uint32 lastFrameTime = 0;

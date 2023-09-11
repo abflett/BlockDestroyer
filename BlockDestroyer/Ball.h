@@ -6,8 +6,7 @@
 namespace BlockDestroyer {
     class Ball {
     public:
-        Ball(SDL_Renderer* newRenderer, SDL_Rect initialRect);
-        ~Ball();
+        Ball(SDL_Texture* texture, SDL_Renderer* newRenderer);
         void draw();
         void move(Uint64 deltaTime);
         SDL_Rect getBoundingBox() const;
@@ -17,5 +16,6 @@ namespace BlockDestroyer {
         SDL_Texture* texture;
         SDL_Rect rect;
         glm::vec2 velocity;
+        glm::vec2 position;
     };
 }

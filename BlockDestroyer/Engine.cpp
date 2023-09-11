@@ -1,4 +1,5 @@
 #include "Engine.h"
+#include "ResourceManager.h"
 
 #include <stdexcept>
 #include <string>
@@ -10,6 +11,7 @@ namespace BlockDestroyer {
         window(nullptr),
         renderer(nullptr),
         desktopDisplayMode(),
+        resourceManager(nullptr),
         imgInit(0) {
 
         if (SDL_Init(SDL_INIT_VIDEO) < 0) {
@@ -34,6 +36,8 @@ namespace BlockDestroyer {
         if ((imgInit & IMG_INIT_PNG) != IMG_INIT_PNG) {
             throw std::runtime_error("Image initialization failed: " + std::string(SDL_GetError()));
         }
+
+        resourceManager = ResourceManager(renderer);
     }
 
     void Engine::cleanUp() {
@@ -58,6 +62,10 @@ namespace BlockDestroyer {
 
     SDL_DisplayMode Engine::getDesktopDisplayMode() const {
         return desktopDisplayMode;
+    }
+
+    ResourceManager& Engine::getResourceManager() {
+        return resourceManager;
     }
 
     Engine::~Engine() {
