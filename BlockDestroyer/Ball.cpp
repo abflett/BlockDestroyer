@@ -1,4 +1,5 @@
 #include "Ball.h"
+#include "Definitions.h"
 
 #include <SDL.h>
 #include <SDL_image.h>
@@ -26,9 +27,9 @@ namespace BlockDestroyer {
     }
 
     void Ball::move(Uint64 deltaTime) {
-        if (rect.x > 800 - rect.w) {
+        if (rect.x > PLAYFIELD_WIDTH - rect.w) {
             velocity.x *= -1;
-            rect.x = 800 - rect.w;
+            rect.x = PLAYFIELD_WIDTH - rect.w;
         }
 
         if (rect.x < 0) {
@@ -36,9 +37,9 @@ namespace BlockDestroyer {
             rect.x = 0;
         }
 
-        if (rect.y > 600 - rect.w) {
+        if (rect.y > PLAYFIELD_HEIGHT - rect.w) {
             velocity.y *= -1;
-            rect.y = 600 - rect.w;
+            rect.y = PLAYFIELD_HEIGHT - rect.w;
         }
 
         if (rect.y < 0) {

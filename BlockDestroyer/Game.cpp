@@ -19,7 +19,19 @@ namespace BlockDestroyer {
 			throw std::runtime_error("SDL initialization failed: " + std::string(SDL_GetError()));
 		}
 
-		window = SDL_CreateWindow("Block Destroyer", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, WIDTH, HEIGHT, SDL_WINDOW_SHOWN);
+		int desktopWidth = 0;  // Initialize with default values
+		int desktopHeight = 0; // Initialize with default values
+		SDL_DisplayMode desktopDisplayMode;
+
+		if (SDL_GetDesktopDisplayMode(0, &desktopDisplayMode) != 0) {
+			// Handle error (e.g., unable to get desktop resolution)
+		}
+		else {
+			desktopWidth = desktopDisplayMode.w;
+			desktopHeight = desktopDisplayMode.h;
+		}
+
+		window = SDL_CreateWindow("Block Destroyer", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, desktopWidth, desktopHeight, SDL_WINDOW_SHOWN);
 		if (!window) {
 			throw std::runtime_error("Window creation failed: " + std::string(SDL_GetError()));
 		}
