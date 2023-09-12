@@ -5,13 +5,15 @@
 #include <glm/glm.hpp>
 
 namespace BlockDestroyer {
-    Ball::Ball(SDL_Texture* getTexture, SDL_Renderer* newRenderer) :
+    Ball::Ball(SDL_Texture* getTexture, SDL_Renderer* newRenderer, glm::i32vec2 bounds) :
         renderer(newRenderer),
         texture(getTexture),
         rect(),
         velocity({ 0.3113f, -0.3332f }), 
-        position({ 640 / 2, 560 / 2 }) {
+        bounds(bounds),
+        position({ bounds.x / 2, bounds.y / 2 }) {
 
+        // set ball size and position
         rect = { static_cast<int>(position.x), static_cast<int>(position.y), 0, 0 };
         SDL_QueryTexture(texture, NULL, NULL, &rect.w, &rect.h);
         
@@ -26,9 +28,9 @@ namespace BlockDestroyer {
     }
 
     void Ball::move(Uint64 deltaTime) {
-        if (position.x > 560 - rect.w) {
+        if (position.x > bounds.x - rect.w) {
             velocity.x *= -1;
-            position.x = 560 - rect.w;
+            position.x = bounds.x - rect.w;
         }
 
         if (position.x < 0) {
@@ -36,9 +38,9 @@ namespace BlockDestroyer {
             position.x = 0;
         }
 
-        if (position.y > 640 - rect.w) {
+        if (position.y > bounds.y - rect.w) {
             velocity.y *= -1;
-            position.y = 640 - rect.w;
+            position.y = bounds.y - rect.w;
         }
 
         if (position.y < 0) {

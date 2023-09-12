@@ -18,7 +18,7 @@ namespace BlockDestroyer {
 		gameSettings(game.getGameSettings()),
 		block({ 20, 20, 48, 16 }, { 255, 0, 0, 255 }),
 		paddle(300),
-		ball(game.getTexture("ball"), renderer) {
+		ball(game.getTexture("ball"), renderer, {game.getGameSettings().getPlayfieldWidth(), game.getGameSettings().getPlayfieldHeight()}) {
 
 		gameplayTexture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, gameSettings.getPlayfieldWidth(), gameSettings.getPlayfieldHeight());
 		if (gameplayTexture == nullptr) {
