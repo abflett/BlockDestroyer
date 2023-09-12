@@ -68,6 +68,10 @@ namespace BlockDestroyer {
         return resourceManager;
     }
 
+    GameSettings& Engine::getGameSettings() {
+        return gameSettings;
+    }
+
     Engine::~Engine() {
         cleanUp();
     }

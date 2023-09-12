@@ -19,9 +19,12 @@ namespace BlockDestroyer {
 
     private:
         SDL_Renderer* renderer;
+        SDL_Texture* gameplayTexture;
+
         GameStateManager& gameStateManager;
         Game& game;
-        SDL_Texture* gameplayTexture;
+        GameSettings& gameSettings;
+
         Block block;
         Ball ball;
         Paddle paddle;

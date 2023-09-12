@@ -14,6 +14,9 @@ namespace BlockDestroyer {
         void cleanUp();
         SDL_Renderer* getRenderer() const;
         ResourceManager& getResourceManager(); // Add a getter for the ResourceManager
+        GameSettings& getGameSettings();
+
+
     private:
         SDL_Window* window;
         SDL_Renderer* renderer;

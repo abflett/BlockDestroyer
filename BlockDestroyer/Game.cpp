@@ -11,14 +11,19 @@
 #include <thread>
 
 namespace BlockDestroyer {
-	Game::Game(Engine& getEngine) :
+	Game::Game(Engine& engine) :
 		quit(false),
 		imgInit(0),
-		engine(getEngine) {
+		engine(engine) {
 	}
 
 	void Game::quitGame() {
 		quit = true;
+	}
+
+	GameSettings& Game::getGameSettings()
+	{
+		return engine.getGameSettings();
 	}
 
 	SDL_Texture* Game::getTexture(std::string name) const {
@@ -39,12 +44,11 @@ namespace BlockDestroyer {
 		GameStateManager gameStateManager(*this);
 
 		Uint32 lastFrameTime = 0;
-
+		int targetFrameTime = static_cast <int>(1000 / engine.getGameSettings().getRefreshRate());
 		while (!quit) {
 			Uint32 currentTime = SDL_GetTicks();
 			Uint32 deltaTime = currentTime - lastFrameTime;
 			lastFrameTime = currentTime;
-
 
 			gameStateManager.handleEvents();
 			gameStateManager.update(deltaTime);
@@ -52,8 +56,8 @@ namespace BlockDestroyer {
 
 			// Cap the frame rate by delaying if necessary
 			Uint32 frameTime = SDL_GetTicks() - currentTime;
-			if (frameTime < TARGET_FRAME_TIME) {
-				SDL_Delay(TARGET_FRAME_TIME - frameTime);
+			if (frameTime < targetFrameTime) {
+				SDL_Delay(targetFrameTime - frameTime);
 			}
 		}
 	}

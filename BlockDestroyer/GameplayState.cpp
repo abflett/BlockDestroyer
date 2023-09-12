@@ -5,6 +5,7 @@
 #include "Ball.h"
 #include "Game.h"
 #include "GameStateManager.h"
+#include "GameSettings.h"
 #include "Definitions.h"
 
 #include <SDL.h>
@@ -15,6 +16,7 @@ namespace BlockDestroyer {
 		game(game),
 		gameStateManager(setGameStateManager),
 		gameplayTexture(nullptr),
+		gameSettings(game.getGameSettings()),
 		block({ 20, 20, 48, 16 }, { 255, 0, 0, 255 }),
 		paddle(300),
 		ball(game.getTexture("ball"), renderer) {
@@ -72,6 +74,9 @@ namespace BlockDestroyer {
 	}
 
 	void GameplayState::render() {
+		const int screenWidth = gameSettings.getScreenWidth();
+		const int screenHeight = gameSettings.getScreenHeight();
+
 		SDL_SetRenderTarget(renderer, gameplayTexture);
 
 		SDL_SetRenderDrawColor(renderer, 32, 32, 32, 255);
@@ -83,8 +88,8 @@ namespace BlockDestroyer {
 
 		SDL_SetRenderTarget(renderer, nullptr);
 
-		float scaleX = static_cast<float>(WINDOW_WIDTH) / static_cast<float>(GAME_WIDTH);
-		float scaleY = static_cast<float>(WINDOW_HEIGHT) / static_cast<float>(GAME_HEIGHT);
+		float scaleX = static_cast<float>(screenWidth) / static_cast<float>(GAME_WIDTH);
+		float scaleY = static_cast<float>(screenHeight) / static_cast<float>(GAME_HEIGHT);
 
 		// Choose the smaller scaling factor to ensure the entire playfield fits on the screen
 		float scale = std::min(scaleX, scaleY);
@@ -95,8 +100,8 @@ namespace BlockDestroyer {
 
 		// Calculate the position to center the gameplayTexture on the screen
 		SDL_Rect screen{
-			(WINDOW_WIDTH != scaledWidth) ? (WINDOW_WIDTH - scaledWidth) / 2 : 0,
-			(WINDOW_HEIGHT != scaledHeight) ? (WINDOW_HEIGHT - scaledHeight) / 2 : 0,
+			(screenWidth != scaledWidth) ? (screenWidth - scaledWidth) / 2 : 0,
+			(screenHeight != scaledHeight) ? (screenHeight - scaledHeight) / 2 : 0,
 			scaledWidth,
 			scaledHeight
 		};
