@@ -6,7 +6,6 @@
 #include "Game.h"
 #include "GameStateManager.h"
 #include "GameSettings.h"
-#include "Definitions.h"
 
 #include <SDL.h>
 
@@ -21,7 +20,7 @@ namespace BlockDestroyer {
 		paddle(300),
 		ball(game.getTexture("ball"), renderer) {
 
-		gameplayTexture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, PLAYFIELD_WIDTH, PLAYFIELD_HEIGHT);
+		gameplayTexture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, gameSettings.getScreenWidth(), gameSettings.getScreenHeight());
 		if (gameplayTexture == nullptr) {
 			SDL_Log("Failed to create gameplay texture: %s", SDL_GetError());
 		}
@@ -76,6 +75,10 @@ namespace BlockDestroyer {
 	void GameplayState::render() {
 		const int screenWidth = gameSettings.getScreenWidth();
 		const int screenHeight = gameSettings.getScreenHeight();
+		const int gameWidth = gameSettings.getgameWidth();
+		const int gameHeight = gameSettings.getgameHeight();
+		const int playfieldWidth = gameSettings.getplayfieldWidth();
+		const int playfieldHeight = gameSettings.getplayfieldHeight();
 
 		SDL_SetRenderTarget(renderer, gameplayTexture);
 
@@ -88,15 +91,15 @@ namespace BlockDestroyer {
 
 		SDL_SetRenderTarget(renderer, nullptr);
 
-		float scaleX = static_cast<float>(screenWidth) / static_cast<float>(GAME_WIDTH);
-		float scaleY = static_cast<float>(screenHeight) / static_cast<float>(GAME_HEIGHT);
+		float scaleX = static_cast<float>(screenWidth) / static_cast<float>(gameWidth);
+		float scaleY = static_cast<float>(screenHeight) / static_cast<float>(gameHeight);
 
 		// Choose the smaller scaling factor to ensure the entire playfield fits on the screen
 		float scale = std::min(scaleX, scaleY);
 
 		// Calculate the scaled width and height of the screen rectangle
-		int scaledWidth = static_cast<int>(PLAYFIELD_WIDTH * scale);
-		int scaledHeight = static_cast<int>(PLAYFIELD_HEIGHT * scale);
+		int scaledWidth = static_cast<int>(playfieldWidth * scale);
+		int scaledHeight = static_cast<int>(playfieldHeight * scale);
 
 		// Calculate the position to center the gameplayTexture on the screen
 		SDL_Rect screen{

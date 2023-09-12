@@ -1,11 +1,11 @@
 #include "Paddle.h"
-#include "Definitions.h"
+
 #include <SDL.h>
 
 namespace BlockDestroyer {
 	const int Paddle::width = 72;
 	const int Paddle::height = 8;
-	const int Paddle::y = PLAYFIELD_HEIGHT - 40;
+	const int Paddle::y = 640 - 40;
 
 	Paddle::Paddle(int x) : x(x), leftIsPressed(false), rightIsPressed(false) {}
 
@@ -40,12 +40,12 @@ namespace BlockDestroyer {
 			x = 0;
 		}
 
-		if (rightIsPressed && x < PLAYFIELD_WIDTH - width) {
+		if (rightIsPressed && x < 640 - width) {
 			x += static_cast<int>(1 * (deltaTime * 0.5));
 		}
 
-		if (x > PLAYFIELD_WIDTH - width) {
-			x = PLAYFIELD_WIDTH - width;
+		if (x > 640 - width) {
+			x = 640 - width;
 		}
 	}
 }

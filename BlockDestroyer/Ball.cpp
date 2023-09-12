@@ -1,5 +1,4 @@
 #include "Ball.h"
-#include "Definitions.h"
 
 #include <SDL.h>
 #include <SDL_image.h>
@@ -11,7 +10,7 @@ namespace BlockDestroyer {
         texture(getTexture),
         rect(),
         velocity({ 0.3113f, -0.3332f }), 
-        position({ PLAYFIELD_WIDTH / 2, PLAYFIELD_HEIGHT / 2 }) {
+        position({ 640 / 2, 560 / 2 }) {
 
         rect = { static_cast<int>(position.x), static_cast<int>(position.y), 0, 0 };
         SDL_QueryTexture(texture, NULL, NULL, &rect.w, &rect.h);
@@ -27,9 +26,9 @@ namespace BlockDestroyer {
     }
 
     void Ball::move(Uint64 deltaTime) {
-        if (position.x > PLAYFIELD_WIDTH - rect.w) {
+        if (position.x > 640 - rect.w) {
             velocity.x *= -1;
-            position.x = PLAYFIELD_WIDTH - rect.w;
+            position.x = 640 - rect.w;
         }
 
         if (position.x < 0) {
@@ -37,9 +36,9 @@ namespace BlockDestroyer {
             position.x = 0;
         }
 
-        if (position.y > PLAYFIELD_HEIGHT - rect.w) {
+        if (position.y > 560 - rect.w) {
             velocity.y *= -1;
-            position.y = PLAYFIELD_HEIGHT - rect.w;
+            position.y = 560 - rect.w;
         }
 
         if (position.y < 0) {
