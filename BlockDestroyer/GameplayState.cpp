@@ -15,7 +15,7 @@ namespace BlockDestroyer {
 		game(game),
 		gameStateManager(setGameStateManager),
 		gameplayTexture(nullptr),
-		block({ 20, 20, 40, 16 }, { 255, 0, 0, 255 }),
+		block({ 20, 20, 48, 16 }, { 255, 0, 0, 255 }),
 		paddle(300),
 		ball(game.getTexture("ball"), renderer) {
 

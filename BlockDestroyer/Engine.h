@@ -1,7 +1,9 @@
 #pragma once
 #include "ResourceManager.h"
+#include "GameSettings.h"
 #include <SDL.h>
 #include <SDL_image.h>
+
 
 namespace BlockDestroyer {
     class Engine {
@@ -11,16 +13,13 @@ namespace BlockDestroyer {
 
         void cleanUp();
         SDL_Renderer* getRenderer() const;
-        SDL_DisplayMode getDesktopDisplayMode() const;
         ResourceManager& getResourceManager(); // Add a getter for the ResourceManager
-
     private:
-        int windowWidth;
-        int windowHeight;
         SDL_Window* window;
         SDL_Renderer* renderer;
-        SDL_DisplayMode desktopDisplayMode;
         ResourceManager resourceManager;
+        GameSettings gameSettings;
+
         int imgInit;
     };
 }

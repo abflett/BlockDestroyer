@@ -1,5 +1,7 @@
-// ResourceManager.cpp
 #include "ResourceManager.h"
+#include <SDL.h>
+#include <SDL_image.h>
+#include <unordered_map>
 #include <stdexcept>
 
 namespace BlockDestroyer {
@@ -25,17 +27,15 @@ namespace BlockDestroyer {
     SDL_Texture* ResourceManager::loadTexture(const std::string& filePath, const std::string& name) {
         SDL_Texture* texture = IMG_LoadTexture(renderer, filePath.c_str());
         if (!texture) {
-            SDL_Log("Texture could not load: %s", SDL_GetError());
+            throw std::runtime_error("Texture could not load: " + name);
         }
         else {
-            // Store the texture with its associated name
             textures[name] = texture;
         }
         return texture;
     }
 
     ResourceManager::~ResourceManager() {
-        // Release resources in the destructor
         releaseResources();
     }
 }
