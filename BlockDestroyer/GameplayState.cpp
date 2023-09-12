@@ -20,7 +20,7 @@ namespace BlockDestroyer {
 		paddle(300),
 		ball(game.getTexture("ball"), renderer) {
 
-		gameplayTexture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, gameSettings.getScreenWidth(), gameSettings.getScreenHeight());
+		gameplayTexture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, gameSettings.getPlayfieldWidth(), gameSettings.getPlayfieldHeight());
 		if (gameplayTexture == nullptr) {
 			SDL_Log("Failed to create gameplay texture: %s", SDL_GetError());
 		}
@@ -75,10 +75,10 @@ namespace BlockDestroyer {
 	void GameplayState::render() {
 		const int screenWidth = gameSettings.getScreenWidth();
 		const int screenHeight = gameSettings.getScreenHeight();
-		const int gameWidth = gameSettings.getgameWidth();
-		const int gameHeight = gameSettings.getgameHeight();
-		const int playfieldWidth = gameSettings.getplayfieldWidth();
-		const int playfieldHeight = gameSettings.getplayfieldHeight();
+		const int gameWidth = gameSettings.getGameWidth();
+		const int gameHeight = gameSettings.getGameHeight();
+		const int playfieldWidth = gameSettings.getPlayfieldWidth();
+		const int playfieldHeight = gameSettings.getPlayfieldHeight();
 
 		SDL_SetRenderTarget(renderer, gameplayTexture);
 

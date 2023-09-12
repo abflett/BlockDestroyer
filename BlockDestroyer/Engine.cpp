@@ -24,7 +24,7 @@ namespace BlockDestroyer {
 
 		gameSettings.initializeFirstLoad(desktopDisplayMode.w, desktopDisplayMode.h, desktopDisplayMode.refresh_rate);
 
-		window = SDL_CreateWindow("Block Destroyer", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, gameSettings.getScreenWidth(), gameSettings.getScreenHeight(), SDL_WINDOW_FULLSCREEN);
+		window = SDL_CreateWindow("Block Destroyer", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, gameSettings.getScreenWidth(), gameSettings.getScreenHeight(), SDL_WINDOW_SHOWN);
 		if (!window) {
 			throw std::runtime_error("Window creation failed: " + std::string(SDL_GetError()));
 		}

@@ -26,9 +26,9 @@ namespace BlockDestroyer {
     }
 
     void Ball::move(Uint64 deltaTime) {
-        if (position.x > 640 - rect.w) {
+        if (position.x > 560 - rect.w) {
             velocity.x *= -1;
-            position.x = 640 - rect.w;
+            position.x = 560 - rect.w;
         }
 
         if (position.x < 0) {
@@ -36,9 +36,9 @@ namespace BlockDestroyer {
             position.x = 0;
         }
 
-        if (position.y > 560 - rect.w) {
+        if (position.y > 640 - rect.w) {
             velocity.y *= -1;
-            position.y = 560 - rect.w;
+            position.y = 640 - rect.w;
         }
 
         if (position.y < 0) {

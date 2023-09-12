@@ -76,19 +76,19 @@ namespace BlockDestroyer {
         saveSettings();
     }
 
-    int GameSettings::getgameWidth() const {
+    int GameSettings::getGameWidth() const {
         return gameWidth;
     }
 
-    int GameSettings::getgameHeight() const {
+    int GameSettings::getGameHeight() const {
         return gameHeight;
     }
 
-    int GameSettings::getplayfieldWidth() const {
+    int GameSettings::getPlayfieldWidth() const {
         return playfieldWidth;
     }
 
-    int GameSettings::getplayfieldHeight() const {
+    int GameSettings::getPlayfieldHeight() const {
         return playfieldHeight;
     }
 

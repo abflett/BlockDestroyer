@@ -36,16 +36,8 @@ namespace BlockDestroyer {
 			x += static_cast<int>(-1 * (deltaTime * 0.5));
 		}
 
-		if (x < 0) {
-			x = 0;
-		}
-
-		if (rightIsPressed && x < 640 - width) {
+		if (rightIsPressed && x < 560 - width) {
 			x += static_cast<int>(1 * (deltaTime * 0.5));
-		}
-
-		if (x > 640 - width) {
-			x = 640 - width;
 		}
 	}
 }

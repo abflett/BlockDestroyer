@@ -10,10 +10,10 @@ namespace BlockDestroyer {
 		int getScreenWidth() const;
 		int getScreenHeight() const;
 		int getRefreshRate() const;
-		int getgameWidth() const;
-		int getgameHeight() const;
-		int getplayfieldWidth() const;
-		int getplayfieldHeight() const;
+		int getGameWidth() const;
+		int getGameHeight() const;
+		int getPlayfieldWidth() const;
+		int getPlayfieldHeight() const;
 
 		// Setters for private members
 		void setScreenWidth(int value);
