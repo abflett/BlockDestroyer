@@ -17,3 +17,5 @@ With a vibrant and visually appealing art style, "Block Destroyer" immerses you 
 Whether you're a casual gamer looking for an enjoyable pastime or a competitive player aiming to top the leaderboards, "Block Destroyer" offers a compelling and accessible gaming experience suitable for all skill levels. Challenge yourself across a range of increasingly complex levels and test your reflexes in this addictive and entertaining game.
 
 "Block Destroyer" is your ticket to a world of fun, excitement, and block-busting action. Download it now and embark on a journey of destruction and discovery in this captivating arcade adventure.
+
+Select the release option to try the Alpha version.
